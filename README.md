@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Victoria Real Estate Dashboard
+
+A real-time dashboard tracking housing market metrics for Victoria, BC. Built with Next.js 16 and powered by data from a public Google Sheet.
+
+## Features
+
+- **Price Trends** — Median prices by property type (SFH, Condo, Townhouse)
+- **Sales Volume** — Monthly sales broken down by property type
+- **Market Health** — Sales-to-listings ratio and months of inventory
+- **Affordability Index** — % of median income required for mortgage payments
+- **Inventory Levels** — Active listings and new listings over time
+- **Price Index** — MLS HPI and Teranet index for smoothed price trends
+- **Mortgage Payments** — Monthly payment vs median income comparison
+- **Interest Rates** — BoC rate, 5-year bond yields, and mortgage rates
+- **Synchronized Charts** — Hover on one chart to highlight the same date across all charts
+
+## Tech Stack
+
+- **Framework**: Next.js 16.1 with App Router and Turbopack
+- **Runtime**: React 19 with React Compiler
+- **Styling**: Tailwind CSS v4
+- **Charts**: Recharts
+- **UI Components**: shadcn/ui (Radix primitives)
+- **Data Source**: Google Sheets API
+- **Caching**: Next.js `'use cache'` directive
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- pnpm (recommended) or npm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/nrempel/victoria-real-estate-dashboard.git
+cd victoria-real-estate-dashboard
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+Add your Google Sheets API key:
 
-To learn more about Next.js, take a look at the following resources:
+```
+GOOGLE_SHEETS_API_KEY=your_api_key_here
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To get an API key:
+1. Go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+2. Create a new project (or select existing)
+3. Enable the Google Sheets API
+4. Create an API key
+5. Restrict the key to Google Sheets API for security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Development
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Production Build
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Deployment
+
+### Vercel
+
+1. Push to GitHub
+2. Import project on [Vercel](https://vercel.com)
+3. Add environment variable: `GOOGLE_SHEETS_API_KEY`
+4. Deploy
+
+## Data Source
+
+Data is pulled from a [public Google Sheet](https://docs.google.com/spreadsheets/d/1UXbrFD-19QmdNAWj5cswQkzSgaiAjApr_XubOVUmCxc) containing historical Victoria real estate metrics compiled from VREB (Victoria Real Estate Board) reports, Bank of Canada data, and other public sources.
+
+## License
+
+MIT
