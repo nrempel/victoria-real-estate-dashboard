@@ -99,8 +99,8 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+  html, body {
+    @apply bg-background text-foreground overflow-x-hidden;
     font-family: var(--font-sans);
   }
   /* Tabular numbers for data */

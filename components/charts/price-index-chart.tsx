@@ -45,16 +45,16 @@ export function PriceIndexChart({
     })), [data]);
 
   return (
-    <Card className="bg-card rounded-xl card-shadow border-0" role="figure" aria-label={`${title}: ${description}`}>
+    <Card className="bg-card rounded-xl card-shadow border-0 overflow-hidden min-w-0" role="figure" aria-label={`${title}: ${description}`}>
       <CardHeader className="pb-2 pt-5 px-5">
         <CardTitle className="font-display text-lg font-medium">{title}</CardTitle>
         <CardDescription className="text-xs">{description}</CardDescription>
       </CardHeader>
       <CardContent className="px-4 pb-5">
-        <ChartContainer config={chartConfig} className="h-[320px] w-full">
+        <ChartContainer config={chartConfig} className="h-[280px] sm:h-[320px] w-full">
           <LineChart
             data={chartData}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
             syncId="dashboard"
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} />

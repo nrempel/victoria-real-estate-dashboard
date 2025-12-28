@@ -174,16 +174,16 @@ export function Dashboard({ data }: DashboardProps) {
             }
           }}>
             <TabsList className="h-9 p-1 bg-secondary/40 rounded-full">
-              <TabsTrigger value="1y" className="text-xs h-7 px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">1 Year</TabsTrigger>
-              <TabsTrigger value="5y" className="text-xs h-7 px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">5 Years</TabsTrigger>
-              <TabsTrigger value="10y" className="text-xs h-7 px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">10 Years</TabsTrigger>
-              <TabsTrigger value="all" className="text-xs h-7 px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">All Time</TabsTrigger>
+              <TabsTrigger value="1y" className="text-xs h-7 px-3 sm:px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">1Y</TabsTrigger>
+              <TabsTrigger value="5y" className="text-xs h-7 px-3 sm:px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">5Y</TabsTrigger>
+              <TabsTrigger value="10y" className="text-xs h-7 px-3 sm:px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">10Y</TabsTrigger>
+              <TabsTrigger value="all" className="text-xs h-7 px-3 sm:px-4 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-sm">All</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
 
-        <div className="space-y-6">
-          <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-6 min-w-0">
+          <div className="grid gap-6 lg:grid-cols-2 min-w-0">
             <ChartErrorBoundary>
               <PriceTrendChart data={filteredData} />
             </ChartErrorBoundary>
@@ -192,7 +192,7 @@ export function Dashboard({ data }: DashboardProps) {
             </ChartErrorBoundary>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2 min-w-0">
             <ChartErrorBoundary>
               <MarketHealthChart data={filteredData} />
             </ChartErrorBoundary>
@@ -201,7 +201,7 @@ export function Dashboard({ data }: DashboardProps) {
             </ChartErrorBoundary>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2 min-w-0">
             <ChartErrorBoundary>
               <InventoryChart data={filteredData} />
             </ChartErrorBoundary>
@@ -210,7 +210,7 @@ export function Dashboard({ data }: DashboardProps) {
             </ChartErrorBoundary>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2 min-w-0">
             <ChartErrorBoundary>
               <MortgagePaymentChart data={filteredData} />
             </ChartErrorBoundary>
@@ -221,24 +221,26 @@ export function Dashboard({ data }: DashboardProps) {
         </div>
       </section>
 
-      <div className="text-center pt-8">
+      <footer className="text-center pt-8">
         <div className="divider max-w-lg mx-auto mb-6" />
         <p className="text-sm text-muted-foreground">
           Data as of {latestData?.date.toLocaleDateString('en-CA', { year: 'numeric', month: 'long' })}
           <span className="mx-2">·</span>
           {filteredData.length} months shown
         </p>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Data compiled by{' '}
-          <a
-            href="https://househuntvictoria.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            House Hunt Victoria
-          </a>
-          <span className="mx-2">·</span>
+        <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 text-xs text-muted-foreground">
+          <span>
+            Data compiled by{' '}
+            <a
+              href="https://househuntvictoria.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              House Hunt Victoria
+            </a>
+          </span>
+          <span className="hidden sm:inline mx-2">·</span>
           <a
             href="https://docs.google.com/spreadsheets/d/1UXbrFD-19QmdNAWj5cswQkzSgaiAjApr_XubOVUmCxc/edit?gid=19292275#gid=19292275"
             target="_blank"
@@ -247,18 +249,20 @@ export function Dashboard({ data }: DashboardProps) {
           >
             View Source Data
           </a>
-          <span className="mx-2">·</span>
-          Built by{' '}
-          <a
-            href="https://nrempel.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            Nicholas Rempel
-          </a>
-        </p>
-      </div>
+          <span className="hidden sm:inline mx-2">·</span>
+          <span>
+            Built by{' '}
+            <a
+              href="https://nrempel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Nicholas Rempel
+            </a>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

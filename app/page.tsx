@@ -43,7 +43,7 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
         <header className="mb-12 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
             Greater Victoria, BC
