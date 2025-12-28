@@ -20,9 +20,36 @@ const dmMono = DM_Mono({
   weight: ["400", "500"],
 });
 
+const siteUrl = "https://victoria-real-estate-dashboard.vercel.app";
+const title = "Victoria Real Estate Dashboard";
+const description = "Live market data and trends for Greater Victoria, BC real estate. Track prices, sales, inventory, affordability metrics, and interest rates.";
+
 export const metadata: Metadata = {
-  title: "Victoria Real Estate Dashboard",
-  description: "Live market data and trends for Greater Victoria, BC real estate. Track prices, sales, inventory, and affordability metrics.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: ["Victoria", "BC", "real estate", "housing market", "home prices", "affordability", "VREB", "market data"],
+  authors: [{ name: "Nick Rempel", url: "https://nrempel.com" }],
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: siteUrl,
+    title,
+    description,
+    siteName: title,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
 export default function RootLayout({

@@ -1,6 +1,31 @@
 import { getCachedSheetData } from '@/lib/google-sheets';
 import { Dashboard } from '@/components/dashboard';
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Victoria Real Estate Dashboard',
+  description: 'Live market data and trends for Greater Victoria, BC real estate.',
+  url: 'https://victoria-real-estate-dashboard.vercel.app',
+  applicationCategory: 'Finance',
+  operatingSystem: 'Web',
+  author: {
+    '@type': 'Person',
+    name: 'Nick Rempel',
+    url: 'https://nrempel.com',
+  },
+  about: {
+    '@type': 'Place',
+    name: 'Greater Victoria',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Victoria',
+      addressRegion: 'BC',
+      addressCountry: 'CA',
+    },
+  },
+};
+
 export default async function Home() {
   let data: Awaited<ReturnType<typeof getCachedSheetData>> = [];
   let error: string | null = null;
@@ -12,7 +37,12 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8">
         <header className="mb-12 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-3">
@@ -44,5 +74,6 @@ export default async function Home() {
         )}
       </div>
     </div>
+    </>
   );
 }
