@@ -147,6 +147,11 @@ export function parseNumber(value: string | undefined | null): number | null {
 }
 
 export function parseDate(value: string): Date {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (match) {
+    const [, year, month, day] = match;
+    return new Date(Number(year), Number(month) - 1, Number(day), 12, 0, 0);
+  }
   const date = new Date(value);
   if (isNaN(date.getTime())) {
     throw new Error(`Invalid date: ${value}`);
